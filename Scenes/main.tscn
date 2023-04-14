@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://coe6lqlal5y87"]
+
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_2exwb"]
+[ext_resource type="Texture2D" uid="uid://rh358vypfbij" path="res://Assets/darkened_overlay.png" id="1_bp7ym"]
+[ext_resource type="PackedScene" uid="uid://dv8cq25r7jyj2" path="res://Scenes/canvas.tscn" id="2_hg78p"]
+[ext_resource type="PackedScene" uid="uid://dfjme138xwkw6" path="res://Scenes/layers.tscn" id="3_um1k0"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_2exwb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_bp7ym")
+
+[node name="Canvas" parent="." instance=ExtResource("2_hg78p")]
+position = Vector2(1080, 1080)
+
+[node name="Layers" parent="." instance=ExtResource("3_um1k0")]
+position = Vector2(2780, 1230)

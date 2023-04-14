@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfjme138xwkw6"]
+
+[ext_resource type="Texture2D" uid="uid://b7u5xx24v3pco" path="res://Assets/LayersBackground.png" id="1_p5nr1"]
+[ext_resource type="Texture2D" uid="uid://dcqjlj6f6w7hx" path="res://Assets/LayersOutline.png" id="2_fqlf3"]
+[ext_resource type="PackedScene" uid="uid://du0bqi64xdy5a" path="res://Scenes/layer.tscn" id="3_5np3f"]
+
+[node name="Layers" type="Node2D"]
+
+[node name="LayersBackground" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -850.0
+offset_right = 600.0
+offset_bottom = 850.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_p5nr1")
+
+[node name="Outline" type="TextureRect" parent="LayersBackground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -620.0
+offset_top = -870.0
+offset_right = 620.0
+offset_bottom = 870.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_fqlf3")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(1200, 1700)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(1200, 1700)
+layout_mode = 2
+
+[node name="Layer" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3_5np3f")]
+position = Vector2(600, 100)
