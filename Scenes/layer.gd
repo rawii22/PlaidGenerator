@@ -11,6 +11,8 @@ func _ready():
 	$LayerID.text = str(layer_ID)
 	if layer_ID != 1:
 		self.position = get_parent().get_node(str((layer_ID - 1))).position + Vector2(0,200)
+	
+	#TODO: Make the Layer ID editable so people can type what layer they want to shift it to. Shift all others down by one
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,3 +40,28 @@ func _on_layer_data_mouse_entered():
 
 func _on_layer_data_mouse_exited():
 	$LayerData/Outline.set_color(Color(1,1,1,1))
+
+
+func _on_delete_pressed():
+	get_parent().get_parent().get_parent().remove_layer(self)
+
+
+func _on_duplicate_pressed():
+	get_parent().get_parent().get_parent().create_existing_layer($ColorPickerButton.color, $XPos.text, $YPos.text, $Width.text, $Rotation.text)
+
+
+func set_color(color): $ColorPickerButton.color = color
+
+func set_x(x): $XPos.text = x
+
+func set_y(y): $YPos.text = y
+
+func set_width(width): $Width.text = width
+
+func set_degree(degree): $Rotation.text = degree
+
+
+func update_ID(newID):
+	self.name = str(newID)
+	layer_ID = newID
+	$LayerID.text = str(layer_ID)
