@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://du0bqi64xdy5a"]
 
-[ext_resource type="Script" path="res://Scenes/ColorPickerButton.gd" id="1_wb5fd"]
+[ext_resource type="Script" path="res://Scenes/layer.gd" id="1_dkhwn"]
 [ext_resource type="FontFile" uid="uid://b4px0375vn33t" path="res://Assets/consola.ttf" id="2_ahlwo"]
 [ext_resource type="Texture2D" uid="uid://dupdl4bfwwiag" path="res://Assets/copy.png" id="3_4ht35"]
 [ext_resource type="PackedScene" uid="uid://b0h6n52b5a4n6" path="res://Scenes/input_box.tscn" id="3_d3s57"]
@@ -9,13 +9,17 @@
 [ext_resource type="Texture2D" uid="uid://dwens6ct3ek42" path="res://Assets/deleteHover.png" id="6_dvuh3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hovhb"]
-size = Vector2(1000, 200)
+size = Vector2(1200, 200)
 
 [node name="Layer" type="Node2D"]
+script = ExtResource("1_dkhwn")
 
 [node name="LayerData" type="Area2D" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="LayerData"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LayerData"]
+shape = SubResource("RectangleShape2D_hovhb")
+
+[node name="Outline" type="ColorRect" parent="LayerData"]
 custom_minimum_size = Vector2(1200, 200)
 anchors_preset = 8
 anchor_left = 0.5
@@ -28,12 +32,22 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LayerData"]
-visible = false
-position = Vector2(100, 0)
-shape = SubResource("RectangleShape2D_hovhb")
+[node name="LayerBackground" type="ColorRect" parent="LayerData"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -595.0
+offset_top = -95.0
+offset_right = 595.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="."]
 custom_minimum_size = Vector2(180, 180)
@@ -42,14 +56,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -590.0
+offset_left = -540.0
 offset_top = -90.0
-offset_right = -410.0
+offset_right = -360.0
 offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0)
-script = ExtResource("1_wb5fd")
+mouse_filter = 1
+color = Color(1, 1, 1, 0)
 metadata/_edit_use_anchors_ = true
 
 [node name="YLabel" type="Label" parent="."]
@@ -58,9 +72,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -99.0
+offset_left = -81.0
 offset_top = -70.0
-offset_right = -45.0
+offset_right = -27.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -72,9 +86,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="YPos" parent="." instance=ExtResource("3_d3s57")]
-offset_left = -142.0
+offset_left = -124.0
 offset_top = -5.0
-offset_right = -2.0
+offset_right = 16.0
 offset_bottom = 70.0
 
 [node name="XLabel" type="Label" parent="."]
@@ -83,9 +97,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -273.0
+offset_left = -255.0
 offset_top = -70.0
-offset_right = -246.0
+offset_right = -228.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -97,9 +111,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="XPos" parent="." instance=ExtResource("3_d3s57")]
-offset_left = -330.0
+offset_left = -312.0
 offset_top = -5.0
-offset_right = -190.0
+offset_right = -172.0
 offset_bottom = 70.0
 
 [node name="WidthLabel" type="Label" parent="."]
@@ -108,9 +122,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 45.0
+offset_left = 63.0
 offset_top = -70.0
-offset_right = 207.0
+offset_right = 225.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -122,9 +136,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Width" parent="." instance=ExtResource("3_d3s57")]
-offset_left = 56.0
+offset_left = 74.0
 offset_top = -5.0
-offset_right = 196.0
+offset_right = 214.0
 offset_bottom = 70.0
 
 [node name="RotationLabel" type="Label" parent="."]
@@ -133,9 +147,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 232.0
+offset_left = 250.0
 offset_top = -70.0
-offset_right = 448.0
+offset_right = 466.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -147,9 +161,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Rotation" parent="." instance=ExtResource("3_d3s57")]
-offset_left = 270.0
+offset_left = 288.0
 offset_top = -5.0
-offset_right = 410.0
+offset_right = 428.0
 offset_bottom = 70.0
 
 [node name="Copy" type="TextureButton" parent="."]
@@ -165,6 +179,7 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 tooltip_text = "Copy"
+mouse_filter = 1
 texture_normal = ExtResource("3_4ht35")
 texture_pressed = ExtResource("3_4ht35")
 texture_hover = ExtResource("4_w4i8v")
@@ -174,8 +189,30 @@ offset_left = 500.0
 offset_top = 5.0
 offset_right = 580.0
 offset_bottom = 85.0
+mouse_filter = 1
 texture_normal = ExtResource("4_86dka")
 texture_pressed = ExtResource("4_86dka")
 texture_hover = ExtResource("6_dvuh3")
 
-[connection signal="picker_created" from="ColorPickerButton" to="ColorPickerButton" method="_on_picker_created"]
+[node name="LayerID" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -590.0
+offset_top = -25.0
+offset_right = -550.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ahlwo")
+theme_override_font_sizes/font_size = 30
+text = "#"
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="LayerData" to="." method="_on_layer_data_mouse_entered"]
+[connection signal="mouse_exited" from="LayerData" to="." method="_on_layer_data_mouse_exited"]
+[connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="picker_created" from="ColorPickerButton" to="." method="_on_color_picker_button_picker_created"]
