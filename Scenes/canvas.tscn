@@ -16,7 +16,7 @@ offset_right = 1020.0
 offset_bottom = 1020.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.501961, 0.501961, 0.501961, 1)
+color = Color(0.196078, 0.196078, 0.196078, 1)
 
 [node name="PatternArea" type="TextureRect" parent="."]
 anchors_preset = 8

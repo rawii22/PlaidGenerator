@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfjme138xwkw6"]
+[gd_scene load_steps=4 format=3 uid="uid://dfjme138xwkw6"]
 
-[ext_resource type="PackedScene" uid="uid://du0bqi64xdy5a" path="res://Scenes/layer.tscn" id="3_5np3f"]
+[ext_resource type="Script" path="res://Scenes/layers.gd" id="1_n2j73"]
+[ext_resource type="Texture2D" uid="uid://bhmnpqf02vq2n" path="res://Assets/add.png" id="1_yp5ff"]
+[ext_resource type="Texture2D" uid="uid://rjglca32amq0" path="res://Assets/addHover.png" id="2_j8ruy"]
 
 [node name="Layers" type="Node2D"]
+script = ExtResource("1_n2j73")
 
 [node name="Outline" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -26,23 +29,60 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -600.0
 offset_top = -850.0
-offset_right = 600.0
+offset_right = 604.0
 offset_bottom = 850.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.803922, 0.803922, 0.803922, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -620.0
+offset_top = -950.0
+offset_right = 620.0
+offset_bottom = -870.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.686275, 0.686275, 0.686275, 1)
+
+[node name="NewLayerButton" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 540.0
+offset_top = -950.0
+offset_right = 620.0
+offset_bottom = -870.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "New Layer"
+texture_normal = ExtResource("1_yp5ff")
+texture_pressed = ExtResource("1_yp5ff")
+texture_hover = ExtResource("2_j8ruy")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(1200, 1700)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -600.0
+offset_top = -850.0
+offset_right = 608.0
+offset_bottom = 850.0
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+clip_contents = true
 custom_minimum_size = Vector2(1200, 1700)
 layout_mode = 2
 
-[node name="Layer" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3_5np3f")]
-position = Vector2(600, 100)
+[connection signal="pressed" from="NewLayerButton" to="." method="_on_new_layer_button_pressed"]

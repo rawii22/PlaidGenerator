@@ -12,6 +12,7 @@
 size = Vector2(1200, 200)
 
 [node name="Layer" type="Node2D"]
+position = Vector2(600, 100)
 script = ExtResource("1_dkhwn")
 
 [node name="LayerData" type="Area2D" parent="."]
@@ -48,6 +49,35 @@ offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TopBorder" type="ColorRect" parent="LayerData"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -100.0
+offset_right = 600.0
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.290196, 0.290196, 0.290196, 1)
+
+[node name="BottomBorder" type="ColorRect" parent="LayerData"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = 98.0
+offset_right = 600.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.290196, 0.290196, 0.290196, 1)
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="."]
 custom_minimum_size = Vector2(180, 180)
@@ -84,12 +114,15 @@ theme_override_font_sizes/font_size = 50
 text = "Y"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="YPos" parent="." instance=ExtResource("3_d3s57")]
 offset_left = -124.0
 offset_top = -5.0
 offset_right = 16.0
 offset_bottom = 70.0
+text = "0"
+metadata/_edit_use_anchors_ = true
 
 [node name="XLabel" type="Label" parent="."]
 anchors_preset = 8
@@ -109,12 +142,15 @@ theme_override_font_sizes/font_size = 50
 text = "X"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="XPos" parent="." instance=ExtResource("3_d3s57")]
 offset_left = -312.0
 offset_top = -5.0
 offset_right = -172.0
 offset_bottom = 70.0
+text = "0"
+metadata/_edit_use_anchors_ = true
 
 [node name="WidthLabel" type="Label" parent="."]
 anchors_preset = 8
@@ -134,12 +170,15 @@ theme_override_font_sizes/font_size = 50
 text = "Width"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Width" parent="." instance=ExtResource("3_d3s57")]
 offset_left = 74.0
 offset_top = -5.0
 offset_right = 214.0
 offset_bottom = 70.0
+text = "1"
+metadata/_edit_use_anchors_ = true
 
 [node name="RotationLabel" type="Label" parent="."]
 anchors_preset = 8
@@ -159,14 +198,17 @@ theme_override_font_sizes/font_size = 50
 text = "Rotation"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Rotation" parent="." instance=ExtResource("3_d3s57")]
 offset_left = 288.0
 offset_top = -5.0
 offset_right = 428.0
 offset_bottom = 70.0
+text = "0"
+metadata/_edit_use_anchors_ = true
 
-[node name="Copy" type="TextureButton" parent="."]
+[node name="Duplicate" type="TextureButton" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -178,21 +220,24 @@ offset_right = 580.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
-tooltip_text = "Copy"
+tooltip_text = "Duplicate"
 mouse_filter = 1
 texture_normal = ExtResource("3_4ht35")
 texture_pressed = ExtResource("3_4ht35")
 texture_hover = ExtResource("4_w4i8v")
+metadata/_edit_use_anchors_ = true
 
 [node name="Delete" type="TextureButton" parent="."]
 offset_left = 500.0
 offset_top = 5.0
 offset_right = 580.0
 offset_bottom = 85.0
+tooltip_text = "Delete"
 mouse_filter = 1
 texture_normal = ExtResource("4_86dka")
 texture_pressed = ExtResource("4_86dka")
 texture_hover = ExtResource("6_dvuh3")
+metadata/_edit_use_anchors_ = true
 
 [node name="LayerID" type="Label" parent="."]
 anchors_preset = 8
@@ -200,17 +245,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -590.0
-offset_top = -25.0
-offset_right = -550.0
-offset_bottom = 29.0
+offset_left = -597.0
+offset_top = -24.0
+offset_right = -543.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ahlwo")
-theme_override_font_sizes/font_size = 30
-text = "#"
+theme_override_font_sizes/font_size = 32
+text = "###"
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="mouse_entered" from="LayerData" to="." method="_on_layer_data_mouse_entered"]
 [connection signal="mouse_exited" from="LayerData" to="." method="_on_layer_data_mouse_exited"]

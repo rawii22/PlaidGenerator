@@ -29,14 +29,21 @@ func _on_text_changed(new_text):
 
 
 func _on_text_submitted(new_text):
-	validateRotation()
+	remove_leading_zeros()
+	validate_rotation()
 
 
 func _on_focus_exited():
-	validateRotation()
+	remove_leading_zeros()
+	validate_rotation()
 
 
-func validateRotation():
+func remove_leading_zeros():
+	self.text = str(input_num)
+	self.set_caret_column(self.text.length())
+
+
+func validate_rotation():
 	if self.name == "Rotation":
 		if input_num < 0 or input_num >= 180:
 			self.text = str(input_num % 180)
