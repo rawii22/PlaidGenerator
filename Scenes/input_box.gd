@@ -33,7 +33,7 @@ func _on_text_changed(new_text):
 
 func _on_text_submitted(new_text):
 	if self.name == "LayerID":
-		if new_text != original_layer:
+		if new_text != original_layer and new_text != "" and int(new_text) != 0:
 			changing_position = true
 			get_tree().get_root().get_node("Main/Layers").move_layer(self.get_parent(), int(new_text))
 		else:

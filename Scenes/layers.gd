@@ -79,18 +79,20 @@ func move_layer(layer, new_position):
 		layer.update_ID(original_position)
 		return
 	
-	var layer_list = get_node("ScrollContainer/LayerList")
+	var layer_list_scene = get_node("ScrollContainer/LayerList")
 	
+	var layer_list = layer_list_scene.get_children()
 	if new_position > original_position: #If the layer was moved lower
 		for n in range(original_position + 1, new_position + 1):
-			var current_layer = layer_list.get_node(str(n))
+			var current_layer = layer_list[n-1]
 			current_layer.position -= Vector2(0, 200)
 			current_layer.update_ID(current_layer.layer_ID - 1)
 	else:
-		for n in range(new_position, num_layers): #If the layer was moved higher
-			var current_layer = layer_list.get_node(str(n))
+		for n in range(new_position, original_position): #If the layer was moved higher
+			var current_layer = layer_list[n-1]
 			current_layer.position += Vector2(0, 200)
 			current_layer.update_ID(current_layer.layer_ID + 1)
 	
+	layer_list_scene.move_child(layer, new_position - 1)
 	layer.update_ID(new_position)
 	layer.position = get_node("ScrollContainer/LayerList").position + (layer_size / 2) + Vector2(0, 200 * (new_position - 1))
