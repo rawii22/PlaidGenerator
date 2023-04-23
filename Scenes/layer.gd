@@ -6,13 +6,11 @@ var layer_ID = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	layer_ID = get_parent().get_parent().get_parent().num_layers
+	layer_ID = get_tree().get_root().get_node("Main/Layers").num_layers
 	self.name = str(layer_ID)
 	$LayerID.text = str(layer_ID)
 	if layer_ID != 1:
 		self.position = get_parent().get_node(str((layer_ID - 1))).position + Vector2(0,200)
-	
-	#TODO: Make the Layer ID editable so people can type what layer they want to shift it to. Shift all others down by one
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,8 +18,12 @@ func _process(delta):
 	pass
 
 
+#TODO: Resize color picker panel, it needs to be bigger.
+
 func _on_color_picker_button_picker_created():
-	var picker = $ColorPickerButton.get_picker()
+	pass
+#	var picker = $ColorPickerButton.get_picker()	
+	
 #	picker.custom_minimum_size.x = custom_minimum_size.x * 2
 #	picker.custom_minimum_size.y = custom_minimum_size.y * 2
 #	picker.size = Vector2i(custom_minimum_size.x * 2, custom_minimum_size.y * 2)
@@ -43,11 +45,11 @@ func _on_layer_data_mouse_exited():
 
 
 func _on_delete_pressed():
-	get_parent().get_parent().get_parent().remove_layer(self)
+	get_tree().get_root().get_node("Main/Layers").remove_layer(self)
 
 
 func _on_duplicate_pressed():
-	get_parent().get_parent().get_parent().create_existing_layer($ColorPickerButton.color, $XPos.text, $YPos.text, $Width.text, $Rotation.text)
+	get_tree().get_root().get_node("Main/Layers").create_existing_layer($ColorPickerButton.color, $XPos.text, $YPos.text, $Width.text, $Rotation.text)
 
 
 func set_color(color): $ColorPickerButton.color = color
