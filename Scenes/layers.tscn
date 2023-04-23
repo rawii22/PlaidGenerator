@@ -102,5 +102,6 @@ vertical_scroll_mode = 2
 [node name="LayerList" type="Control" parent="ScrollContainer"]
 custom_minimum_size = Vector2(1200, 0)
 layout_mode = 2
+mouse_filter = 1
 
 [connection signal="pressed" from="NewLayerButton" to="." method="_on_new_layer_button_pressed"]

@@ -2,6 +2,7 @@ extends Node2D
 
 var Layer = preload("res://Scenes/layer.tscn")
 var num_layers = 0
+var layer_size = Vector2(1200, 200) #Please find a better way of getting this value
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -50,7 +51,7 @@ func create_existing_layer(color, x, y, width, degree):
 		
 		var layer_list = get_node("ScrollContainer/LayerList")
 		layer_list.custom_minimum_size += Vector2(0, 200)
-		layer_list.add_child(new_layer)
+		layer_list.add_child(new_layer, true)
 
 
 func remove_layer(node):
@@ -67,5 +68,29 @@ func remove_layer(node):
 		
 	layer_count_delta(-1)
 	layer_list.custom_minimum_size -= Vector2(0, 200)
+
+
+func move_layer(layer, new_position):
+	if new_position > num_layers:
+		new_position = num_layers
 	
-	#TODO: Make it possible to just shift layers. Influence the ordering of images on the canvas
+	var original_position = layer.layer_ID
+	if new_position == original_position:
+		layer.update_ID(original_position)
+		return
+	
+	var layer_list = get_node("ScrollContainer/LayerList")
+	
+	if new_position > original_position: #If the layer was moved lower
+		for n in range(original_position + 1, new_position + 1):
+			var current_layer = layer_list.get_node(str(n))
+			current_layer.position -= Vector2(0, 200)
+			current_layer.update_ID(current_layer.layer_ID - 1)
+	else:
+		for n in range(new_position, num_layers): #If the layer was moved higher
+			var current_layer = layer_list.get_node(str(n))
+			current_layer.position += Vector2(0, 200)
+			current_layer.update_ID(current_layer.layer_ID + 1)
+	
+	layer.update_ID(new_position)
+	layer.position = get_node("ScrollContainer/LayerList").position + (layer_size / 2) + Vector2(0, 200 * (new_position - 1))

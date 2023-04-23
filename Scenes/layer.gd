@@ -62,6 +62,6 @@ func set_degree(degree): $Rotation.text = degree
 
 
 func update_ID(newID):
-	self.name = str(newID)
 	layer_ID = newID
+	self.name = str(layer_ID)
 	$LayerID.text = str(layer_ID)
