@@ -2,20 +2,16 @@ extends Node2D
 
 
 var layer_ID = -1
-
+var canvas
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	layer_ID = get_tree().get_root().get_node("Main/Layers").num_layers
-	self.name = str(layer_ID)
+	canvas = get_tree().get_root().get_node("Main/Canvas")
+	$ColorPickerButton.color.a = 1.0
+	layer_ID = get_tree().get_root().get_node("Main/Layers").get_layer_count()
 	$LayerID.text = str(layer_ID)
-	if layer_ID != 1:
-		self.position = get_parent().get_node(str((layer_ID - 1))).position + Vector2(0,200)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	if layer_ID != 0:
+		self.position = get_tree().get_root().get_node("Main/Layers").layers[layer_ID - 1].position + Vector2(0,200)
 
 
 #TODO: Resize color picker panel, it needs to be bigger.
@@ -34,6 +30,7 @@ func _on_color_picker_button_picker_created():
 #Update the color in the color box
 func _on_color_picker_button_color_changed(color):
 	$ColorPickerButton.color = color
+	update()
 
 
 func _on_layer_data_mouse_entered():
@@ -49,7 +46,7 @@ func _on_delete_pressed():
 
 
 func _on_duplicate_pressed():
-	get_tree().get_root().get_node("Main/Layers").create_existing_layer($ColorPickerButton.color, $XPos.text, $YPos.text, $Width.text, $Rotation.text)
+	get_tree().get_root().get_node("Main/Layers").create_existing_layer($ColorPickerButton.color, $XPos.text, $YPos.text, $Width.text, $Rotation.text, layer_ID)
 
 
 func set_color(color): $ColorPickerButton.color = color
@@ -63,7 +60,21 @@ func set_width(width): $Width.text = width
 func set_degree(degree): $Rotation.text = degree
 
 
+func get_color(): return $ColorPickerButton.color
+
+func get_x(): return int($XPos.text)
+
+func get_y(): return int($YPos.text)
+
+func get_width(): return int($Width.text)
+
+func get_degree(): return int($Rotation.text)
+
+
+func update():
+	canvas.update_canvas()
+
+
 func update_ID(newID):
 	layer_ID = newID
-	self.set_name(str(layer_ID))
-	$LayerID.text = str(layer_ID)
+	$LayerID.text = str(newID)

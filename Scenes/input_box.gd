@@ -31,13 +31,14 @@ func _on_text_changed(new_text):
 		return
 	old_text = new_text
 	input_num = int(new_text)
+	get_parent().update()
 
 
 #If anything other than the LayerID box is being submitted, clean the input and validate Rotation's box.
 #If LayerID is being submitted, if it is valid, then change the layer position. Otherwise, change back to original value.
 func _on_text_submitted(new_text):
 	if self.name == "LayerID":
-		if new_text != original_layer and new_text != "" and int(new_text) != 0:
+		if new_text != original_layer and new_text != "":
 			changing_position = true
 			get_tree().get_root().get_node("Main/Layers").move_layer(self.get_parent(), int(new_text))
 		else:
@@ -46,6 +47,7 @@ func _on_text_submitted(new_text):
 		return
 	remove_leading_zeros()
 	validate_rotation()
+	get_parent().update()
 
 
 #If focus is exited on boxes other than LayerID, clean them and leave them alone since they've already been
